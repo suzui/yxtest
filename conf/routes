@@ -1,0 +1,23 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                       Application.index
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Import Module routes
+*     	/crud           						module:crud
+* 		/bespin 								module:bespin-1.0.1
+
+*		/person/{action}						PersonController.{action}
+*		/back/{action}							BackController.{action}
+*		/wechat/{action}						WechatController.{action}
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}

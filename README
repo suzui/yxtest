@@ -1,0 +1,23 @@
+master分支为官方的play1.4.2版本构建可在官网下载
+japid分支为适配japid的play1.4.2版本构建 下载地址 http://www.deach.net:5555/wiki/download/attachments/6529566/play-1.4.x-bran-1.0.2.zip?version=1&modificationDate=1466134305000
+
+项目构建
+play new demo
+
+基础命令
+play stop|run|start|status|test|auto-test
+
+依赖同步
+play deps --sync
+
+安装module
+play install ${module}
+
+构建IDE工程
+play eclipsify    for Eclipse 等同 play ec 
+play netbeansify  for Netbeans
+play idealize 	  for IntelliJ IDEA
+
+打包
+play war myapp -o myapp.war
+

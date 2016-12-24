@@ -1,0 +1,16 @@
+
+# Application dependencies 
+require:
+    - play
+    - play -> bespin 1.0.1 
+    - play -> crud
+
+# My custom repositories 
+repositories:
+    - nexus:
+        type: iBiblio
+        root: "http://maven.iclass.cn:8081/nexus/content/groups/public/"
+        contains:
+            - com.* -> * 
+            - cn.* -> * 
+            - org.* -> *
