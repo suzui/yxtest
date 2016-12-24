@@ -1,0 +1,63 @@
+#{extends 'layouts/backLayout.html' /}
+#{set title:'后台管理' /}
+<div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">菜单栏目管理</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            底部菜单栏
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>层级</th>
+                                        <th>名称</th>
+                                        <th>上级菜单</th>
+                                        <th>类型</th>
+                                        <th>值</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                	%{int i=0;}%
+                                	#{list items:menuVO.menu.button,as:"buttonVO"}
+                                    <tr class="${i/2==0?"odd":"even"}">
+                                        <td>一级菜单</td>
+                                        <td>${buttonVO.name}</td>
+                                        <td>无</td>
+                                        <td class="center">无</td>
+                                        <td class="center">无</td>
+                                    </tr>
+                                    %{i++}%
+                                    
+                                	#{list items:buttonVO.sub_button, as:"sbuttonVO"}
+                                    <tr class="${i/2==0?"odd":"even"}">
+                                        <td>二级菜单</td>
+                                        <td>${sbuttonVO.name}</td>
+                                        <td>${buttonVO.name}</td>
+                                        <td class="center">${sbuttonVO.type}</td>
+                                        <td class="center">${sbuttonVO.url}</td>
+                                    </tr>
+                                    %{i++}%
+                                    #{/list}
+                                    
+                                    #{/list}
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+        </div>
+        <!-- /#page-wrapper -->

@@ -17,7 +17,7 @@ public class PersonTest extends BaseModelTest {
 
 	@Test
 	public void testFind() {
-		Person person = Person.findOneByName("p1name");
+		Person person = Person.findByName("p1name");
 		assertNotNull(person);
 	}
 
@@ -25,12 +25,6 @@ public class PersonTest extends BaseModelTest {
 	public void testFetch() {
 		List<Person> personList = Person.fetchAll();
 		assertTrue(personList.size() > 0);
-	}
-
-	@Test
-	public void testAdd() {
-		Person person = Person.add("p2name");
-		assertNotNull(person);
 	}
 
 }

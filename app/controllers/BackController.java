@@ -4,6 +4,8 @@ import java.util.List;
 
 import jsons.Result;
 import models.person.Person;
+import utils.WechatUtils;
+import vos.MenuVO;
 
 public class BackController extends BaseController {
 
@@ -28,12 +30,18 @@ public class BackController extends BaseController {
 		renderJSON(new Result(true));
 	}
 
+	public static void logout() {
+		removePersonIdToSession();
+		removePersonIdToCookie();
+		index();
+	}
+
 	public static void home() {
 		final Person person = getCurrPerson();
 		render(person);
 	}
 
-	public static void managePerson() {
+	public static void persons() {
 		final List<Person> personList = Person.fetchAll();
 		render(personList);
 	}
@@ -41,6 +49,40 @@ public class BackController extends BaseController {
 	public static void addPerson(String username, String name, String password, int sex, String cellphone) {
 		Person.add(username, password, name, sex, cellphone);
 		renderJSON(true);
+	}
+
+	public static void menus() {
+		MenuVO menuVO = WechatUtils.getMenus();
+		render(menuVO);
+	}
+
+	public static void createMenu() {
+		WechatUtils.createMenu();
+		renderJSON(new Result(true, "创建菜单成功"));
+	}
+
+	public static void yizhen() {
+	}
+
+	public static void yimai() {
+	}
+
+	public static void yiyan() {
+	}
+
+	public static void zhuxue() {
+	}
+
+	public static void zhucan() {
+	}
+
+	public static void jinglao() {
+	}
+
+	public static void peixun() {
+	}
+
+	public static void huanbao() {
 	}
 
 }
