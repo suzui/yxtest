@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>#{get 'title' /}</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="@{'/public/sbadmin/vendor/bootstrap/css/bootstrap.min.css'}" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="@{'/public/sbadmin/vendor/metisMenu/metisMenu.min.css'}" rel="stylesheet">
+    
+    <!-- DataTables CSS -->
+    <link href="@{'/public/sbadmin/vendor/datatables-plugins/dataTables.bootstrap.css'}" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="@{'/public/sbadmin/vendor/datatables-responsive/dataTables.responsive.css'}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="@{'/public/sbadmin/dist/css/sb-admin-2.css'}" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="@{'/public/sbadmin/vendor/morrisjs/morris.css'}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="@{'/public/sbadmin/vendor/font-awesome/css/font-awesome.min.css'}" rel="stylesheet" type="text/css">
+
+	<!-- upload -->    
+	*{<link  href="@{'/public/upload/css/jquery.fileupload.css'}" rel="stylesheet">  
+	<link  href="@{'/public/upload/css/jquery.fileupload-ui.css'}" rel="stylesheet">}*  
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+        #{backNavTag /}
+		#{doLayout /}
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="@{'/public/sbadmin/vendor/jquery/jquery.min.js'}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="@{'/public/sbadmin/vendor/bootstrap/js/bootstrap.min.js'}"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="@{'/public/sbadmin/vendor/metisMenu/metisMenu.min.js'}"></script>
+
+
+	<!-- ueditor -->
+    <script src="@{'/public/ueditor/ueditor.config.js'}"></script>
+    <script src="@{'/public/ueditor/ueditor.all.min.js'}"></script>
+	
+	<!-- upload -->
+	*{<script src="@{'/public/upload/js/vendor/jquery.ui.widget.js'}"></script>  
+	<script src="@{'/public/upload/js/jquery.fileupload.js'}"></script>  
+	<script src="@{'/public/upload/js/jquery.iframe-transport.js'}"></script>}*  
+	
+    <!-- Custom Theme JavaScript -->
+    <script src="@{'/public/sbadmin/dist/js/sb-admin-2.js'}"></script>
+
+    <script>
+    $("#inputfile").change(function(){
+    	          //创建FormData对象
+    	          var data = new FormData();
+    	          //为FormData对象添加数据
+    	          //
+    	          $.each($('#inputfile')[0].files, function(i, file) {
+    	              data.append('qqfile', file);
+    	          });
+    	          data.append('bucketName','smallfiles');
+    	          data.append('source','web');
+    	          $.ajax({
+    	              url:'http://oss.iclass.cn/formImage',
+    	              type:'POST',
+    	              data:data,
+    	              cache: false,
+    	              contentType: false,    //不可缺
+    	              processData: false,    //不可缺
+    	              success:function(data){
+    	            	var result=jQuery.parseJSON(data);
+						$("#inputImage").attr('src',result.html);   	                  
+    	              }
+    	          });
+    	      }); 
+  	//实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor');
+    $("#submit").click(function(){
+    	  $.post("/back/addItem",
+    	  {
+    	  	type:${type.value},
+    	  	title:$("#title").val(),
+    	  	author:$("#author").val(),
+    	  	cover:$("#inputImage").attr("src"),
+    	  	summary:$("#summary").val(),
+    	  	link:$("#link").val(),
+    	  	content:ue.getContent()
+    	  },
+    	  function(data,status){
+				if(status=="success"){
+					alert("添加成功");
+					window.location.href="/back/items?typeValue="+${type.value};
+				}else{
+					alert("添加失败，请检查格式");
+				}
+    	  });
+    	});
+    </script>
+</body>
+
+</html>

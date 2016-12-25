@@ -1,6 +1,5 @@
 package models;
 
-import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,6 +11,7 @@ import org.apache.commons.lang.StringUtils;
 
 import jpaListeners.BaseModelListener;
 import play.db.jpa.Model;
+import utils.DateUtils;
 
 @MappedSuperclass
 @EntityListeners(BaseModelListener.class)
@@ -64,12 +64,12 @@ public class BaseModel extends Model {
 		this.save();
 	}
 
-	public Date createTime() {
-		return new Date(this.createTime);
+	public String createTime() {
+		return DateUtils.format(createTime);
 	}
 
-	public Date lastModifyTime() {
-		return new Date(this.lastModifyTime);
+	public String lastModifyTime() {
+		return DateUtils.format(lastModifyTime);
 	}
 
 }

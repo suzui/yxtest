@@ -1,7 +1,5 @@
 package utils;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -95,15 +93,6 @@ public class WechatUtils {
 		buttonVOs3.add(new ButtonVO("view", "培训", null, BASEURL + "/wechat/peixun", null));
 		buttonVOs3.add(new ButtonVO("view", "环保", null, BASEURL + "/wechat/huanbao", null));
 		buttonVOs3.add(new ButtonVO("view", "加入我们", null, BASEURL + "/back/index", null));
-		String url = "";
-		try {
-			url = "https://open.weixin.qq.com/connect/oauth2/authorize "
-					+ URLEncoder.encode("?appid=" + APPID + "&redirect_uri=" + BASEURL + "/wechat/authorize"
-							+ "&response_type=code&scope=snsapi_base&state=100#wechat_redirect", "utf8");
-		} catch (UnsupportedEncodingException e) {
-			Logger.info("urlencodeerror", e.getMessage());
-		}
-		buttonVOs3.add(new ButtonVO("view", "授权", null, url, null));
 		buttonVOs.add(new ButtonVO("click", "公益", null, null, buttonVOs3));
 		MenuInnerVO menuInfoVO = new MenuInnerVO(buttonVOs);
 		String menuinfo = new Gson().toJson(menuInfoVO);

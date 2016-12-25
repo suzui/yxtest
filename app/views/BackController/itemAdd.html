@@ -1,0 +1,38 @@
+#{extends 'layouts/itemLayout.html' /}
+#{set title:'后台管理' /}
+ <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">${type}发布</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                	<div class="col-lg-12">
+                         	<input id="title" class="form-control" placeholder="文章标题" style="width: 400px">
+                         	<br/>
+                         	<input id="author" class="form-control" placeholder="发布作者" style="width: 400px">
+                         	<br/>
+                         	<div class="form-group">
+                         		<img src="" width="100" id="inputImage">
+                         		<br/>
+                            	<label>封面图片</label><input id="inputfile" type="file" multiple="multiple">
+                            </div>
+                         	<textarea id="summary" class="form-control" rows="3" placeholder="内容概要" style="width: 400px"></textarea>
+                         	<br/>
+                         	<input id="link" class="form-control" placeholder="外部链接" style="width: 400px">
+                         	<br/>
+                         	<script id="editor" type="text/plain" style="width:800px;height:400px;">文章内容</script>
+                         	<br/>
+                         	<button type="button" class="btn btn-default btn-lg" onclick="history.back()">取消</button>
+                         	<button id="submit" type="button" class="btn btn-primary btn-lg">提交</button>
+                         	<br/><br/>&nbsp;
+                	</div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->

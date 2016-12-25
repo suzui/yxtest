@@ -21,42 +21,33 @@
                         <li>
                             <a href="#"><i class="fa fa-heart fa-fw"></i> 义工 <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                            	#{list items: models.post.Item.Type.getByValue(100),as:"type"}
                                 <li>
-                                    <a href="@{BackController.yizhen}"> 义诊 </a>
+                                    <a href="@{BackController.items(type.value)}"> ${type} </a>
                                 </li>
-                                <li>
-                                    <a href="@{BackController.yimai}"> 义卖 </a>
-                                </li>
-                                <li>
-                                    <a href="@{BackController.yiyan}"> 义演 </a>
-                                </li>
+                                #{/list}
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-plus-square fa-fw"></i> 帮助 <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                               #{list items: models.post.Item.Type.getByValue(200),as:"type"}
                                 <li>
-                                    <a href="@{BackController.zhuxue}"> 助学 </a>
+                                    <a href="@{BackController.items(type.value)}"> ${type} </a>
                                 </li>
-                                <li>
-                                    <a href="@{BackController.zhucan}"> 助残 </a>
-                                </li>
-                                <li>
-                                    <a href="@{BackController.jinglao}"> 敬老 </a>
-                                </li>
+                                #{/list}
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-smile-o fa-fw"></i> 公益 <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                #{list items: models.post.Item.Type.getByValue(300),as:"type"}
                                 <li>
-                                    <a href="@{BackController.peixun}"> 培训 </a>
+                                    <a href="@{BackController.items(type.value)}"> ${type} </a>
                                 </li>
-                                <li>
-                                    <a href="@{BackController.huanbao}"> 环保 </a>
-                                </li>
+                                #{/list}
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
