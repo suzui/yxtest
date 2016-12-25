@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import org.apache.commons.lang.StringUtils;
+import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
 
 import models.person.Person;
 import models.post.Item;
@@ -57,8 +60,16 @@ public class WechatController extends Controller {
 						MsgType.text.toString(), null,
 						"感恩关注一心慈善！也许我们的援助微不足道，但，我们的帮助可以温暖人心。我们来自偶然，我们是浩瀚宇宙中的一粒尘埃，但我们有一颗共同的心，我们有一个共同的名字“一心”！", null,
 						null);
+				Document doc = DocumentHelper.createDocument();
+				Element root = doc.addElement("xml");
+				root.addElement("ToUserName").addCDATA(sPostVO.ToUserName);
+				root.addElement("FromUserName").addCDATA(sPostVO.FromUserName);
+				root.addElement("CreateTime").addText(sPostVO.CreateTime + "");
+				root.addElement("MsgType").addCDATA(sPostVO.MsgType);
+				root.addElement("Content").addCDATA(sPostVO.Content);
 				response.setContentTypeIfNotSet("application/xml;charset=UTF-8");
-				response.print(sPostVO.toXML());
+				Logger.info("[docxml:]%s", doc.asXML());
+				response.print(doc.asXML());
 			}
 		}
 	}
