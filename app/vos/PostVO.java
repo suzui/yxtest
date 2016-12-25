@@ -81,11 +81,13 @@ public class PostVO {
 		try {
 			for (Field field : PostVO.class.getDeclaredFields()) {
 				String type = field.getType().toString();
-				if (type.endsWith("String")) {
-					sb.append("<" + field.getName() + ">" + "<![CDATA[" + field.get(this) + "]]" + "</"
-							+ field.getName() + ">");
-				} else {
-					sb.append("<" + field.getName() + ">" + field.get(this) + "</" + field.getName() + ">");
+				if (field.get(this) != null) {
+					if (type.endsWith("String")) {
+						sb.append("<" + field.getName() + ">" + "<![CDATA[" + field.get(this) + "]]" + "</"
+								+ field.getName() + ">");
+					} else {
+						sb.append("<" + field.getName() + ">" + field.get(this) + "</" + field.getName() + ">");
+					}
 				}
 			}
 		} catch (Exception e) {

@@ -77,7 +77,7 @@ public class BackController extends BaseController {
 		render(items, type);
 	}
 
-	public static void itemadd(int typeValue) {
+	public static void itemAdd(int typeValue) {
 		Type type = Type.convert(typeValue);
 		render(type);
 	}
