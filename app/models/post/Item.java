@@ -26,6 +26,8 @@ public class Item extends BaseModel {
 	@Enumerated(EnumType.STRING)
 	public Type type;
 
+	public Integer view;
+
 	public enum Type {
 		义诊(101), 义卖(102), 义演(103), 助学(201), 助残(202), 敬老(203), 培训(301), 环保(302);
 		public int value;
@@ -81,6 +83,13 @@ public class Item extends BaseModel {
 
 	public static List<Item> fetchAll() {
 		return Item.find("select i from Item i where i.isDeleted=false").fetch();
+	}
+
+	public int view() {
+		if (this.view == null) {
+			return 0;
+		}
+		return this.view;
 	}
 
 }

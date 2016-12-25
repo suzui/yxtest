@@ -61,4 +61,9 @@ public class WechatController extends Controller {
 		render(items, type);
 	}
 
+	public static void item(long id) {
+		Item item = Item.findOneById(id);
+		render(item);
+	}
+
 }
