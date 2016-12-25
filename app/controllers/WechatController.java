@@ -61,7 +61,7 @@ public class WechatController extends Controller {
 						"感恩关注一心慈善！也许我们的援助微不足道，但，我们的帮助可以温暖人心。我们来自偶然，我们是浩瀚宇宙中的一粒尘埃，但我们有一颗共同的心，我们有一个共同的名字“一心”！", null,
 						null);
 				Document doc = DocumentHelper.createDocument();
-				Element root = doc.addElement("xml");
+				Element root = doc.getRootElement();
 				root.addElement("ToUserName").addCDATA(sPostVO.ToUserName);
 				root.addElement("FromUserName").addCDATA(sPostVO.FromUserName);
 				root.addElement("CreateTime").addText(sPostVO.CreateTime + "");
@@ -69,7 +69,7 @@ public class WechatController extends Controller {
 				root.addElement("Content").addCDATA(sPostVO.Content);
 				response.setContentTypeIfNotSet("application/xml;charset=UTF-8");
 				Logger.info("[docxml:]%s", doc.asXML());
-				response.print(sPostVO.toXML());
+				response.print(doc.asXML());
 			}
 		}
 	}
