@@ -154,7 +154,7 @@ input[type=search]::-webkit-search-results-decoration{display: none}
 .recommend-news li{padding: 0.3125rem 0 0.18rem 0;}
 .recommend-news li a{display: block;}
 .recommend-news li .recommend-left{float: left; margin-right: 0.375rem;}
-.recommend-news li .recommend-left img{width: 2.21875rem; height:1.25rem;}
+.recommend-news li .recommend-left img{width: 1.25rem; height:1.25rem;}
 .recommend-news li .recommend-right{float: left;border-bottom: 1px solid #DDE2EA; width: 7.03125rem;padding-bottom: 0.078125rem;}
 .recommend-news li .recommend-right h1{font-size: 0.375rem;color: #545454; line-height:0.59375rem; width: 6.75rem; padding-bottom:0.125rem;}
 .recommend-news li .recommend-right .recommend-comments{float: left;font-size:0.375rem;color: #FF0000}

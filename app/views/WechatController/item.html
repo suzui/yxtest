@@ -9,23 +9,19 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta content="telephone=no,email=no" name="format-detection">
     	<link rel="stylesheet" href="/public/stylesheets/item.css">
-		
 	</head>
 	<body class="bgf5">
-		<div class="article_topbar">
-			<a href="" class="iconfont">&#xe628;</a>
-			<a href="" class="num">10</a>
-			<a href="javascript:;" class="iconfont">&#xe643;</a>
-			<a href="javascript:;" class="iconfont">&#xe648;</a>
-		</div>
+		<br/>
 		<div class="article_header">
 			<h3>${item.title}</h3>
 			<p>
-				<span>${item.createTime()}</span>
+				<span>${item.createTime()} - ${item.author}</span>
 			</p>
 		</div>
 		<div class="article_content">
-			${item.content}
+			#{verbatim}
+				${item.content}
+			#{/verbatim}
 		</div>
 		*{<div class="comment_bar">
 			<textarea name="" id="" placeholder="写评论"></textarea>

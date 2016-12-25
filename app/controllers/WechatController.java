@@ -63,6 +63,7 @@ public class WechatController extends Controller {
 
 	public static void item(long id) {
 		Item item = Item.findOneById(id);
+		item.viewed();
 		render(item);
 	}
 

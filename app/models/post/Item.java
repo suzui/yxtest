@@ -85,6 +85,14 @@ public class Item extends BaseModel {
 		return Item.find("select i from Item i where i.isDeleted=false").fetch();
 	}
 
+	public void viewed() {
+		if (this.view == null) {
+			this.view = 0;
+		}
+		this.view++;
+		this.save();
+	}
+
 	public int view() {
 		if (this.view == null) {
 			return 0;
