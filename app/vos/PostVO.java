@@ -90,6 +90,7 @@ public class PostVO {
 					}
 				}
 			}
+			sb.append("</xml>");
 		} catch (Exception e) {
 			Logger.error("[toxmlerror:]%s", e.getMessage());
 		}
