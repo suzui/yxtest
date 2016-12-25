@@ -38,7 +38,9 @@ public class WechatController extends Controller {
 		}
 		if (StringUtils.isNotBlank(openid)) {
 			UserVO userVO = WechatUtils.getUserInfo(openid);
-			Person.add(userVO.nickname, "111111", userVO.nickname, userVO.sex + 100, null, openid);
+			if (userVO.subscribe == 1) {
+				Person.add(userVO.nickname, userVO.headimgurl, userVO.sex + 100, openid);
+			}
 		}
 	}
 

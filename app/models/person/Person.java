@@ -26,6 +26,8 @@ public class Person extends BaseModel {
 	@Column(length = 100)
 	public String name;
 
+	public String nickname;
+
 	public String avatar;
 
 	@Enumerated(EnumType.STRING)
@@ -84,17 +86,16 @@ public class Person extends BaseModel {
 		}
 	}
 
-	public static Person add(String username, String password, String name, int sex, String cellphone, String openid) {
+	public static Person add(String nickname, String avatar, int sex, String openid) {
 		Person person = findByOpenid(openid);
 		if (person == null) {
 			person = new Person();
 		}
-		person.username = username;
-		person.name = name;
-		person.password = CodeUtils.md5(password);
+		person.nickname = nickname;
+		person.avatar = avatar;
 		person.sex = Sex.convert(sex);
-		person.role = Role.普通用户;
 		person.openid = openid;
+		person.role = Role.普通用户;
 		return person.save();
 	}
 
