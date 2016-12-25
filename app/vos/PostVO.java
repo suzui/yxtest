@@ -69,7 +69,7 @@ public class PostVO {
 		} catch (Exception e) {
 			Logger.error("[fromxmlerror:]%s", e.getMessage());
 		}
-		Logger.error("[fromxmlsuccess:]%s", postVO.MsgType);
+		Logger.info("[fromxmlsuccess:]%s", postVO.MsgType);
 		return postVO;
 	}
 
