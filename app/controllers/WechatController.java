@@ -50,8 +50,9 @@ public class WechatController extends Controller {
 				Person.add(userVO.nickname, userVO.headimgurl, userVO.sex + 100, openid);
 			}
 			PostVO rPostVO = PostVO.fromXML(body);
-			if (rPostVO.MsgType.equals(MsgType.event.toString())
-					&& rPostVO.Event.equals(EventType.subscribe.toString())) {
+			if ((rPostVO.MsgType.equals(MsgType.event.toString())
+					&& rPostVO.Event.equals(EventType.subscribe.toString()))
+					|| rPostVO.MsgType.equals(MsgType.text.toString())) {
 				PostVO sPostVO = new PostVO(rPostVO.FromUserName, rPostVO.ToUserName, System.currentTimeMillis() / 1000,
 						MsgType.text.toString(), null,
 						"感恩关注一心慈善！也许我们的援助微不足道，但，我们的帮助可以温暖人心。我们来自偶然，我们是浩瀚宇宙中的一粒尘埃，但我们有一颗共同的心，我们有一个共同的名字“一心”！", null,
