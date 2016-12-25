@@ -69,7 +69,7 @@ public class WechatController extends Controller {
 				root.addElement("Content").addCDATA(sPostVO.Content);
 				response.setContentTypeIfNotSet("application/xml;charset=UTF-8");
 				Logger.info("[docxml:]%s", doc.asXML());
-				response.print(doc.asXML());
+				response.print(sPostVO.toXML());
 			}
 		}
 	}
