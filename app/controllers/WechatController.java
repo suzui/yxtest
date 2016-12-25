@@ -14,6 +14,9 @@ import play.mvc.Controller;
 import play.mvc.Http.Header;
 import play.mvc.Http.Request;
 import utils.WechatUtils;
+import vos.PostVO;
+import vos.PostVO.EventType;
+import vos.PostVO.MsgType;
 import vos.UserVO;
 
 public class WechatController extends Controller {
@@ -34,15 +37,24 @@ public class WechatController extends Controller {
 		Logger.info("[wechatparams end] time:%d", System.currentTimeMillis());
 	}
 
-	public static void checkSignature(String signature, String timestamp, String nonce, String echostr, String openid) {
+	public static void checkSignature(String signature, String timestamp, String nonce, String echostr, String openid,
+			String body) {
 		if (WechatUtils.check(signature, timestamp, nonce, echostr)) {
 			response.print(echostr);
 			renderJSON(true);
 		}
+
 		if (StringUtils.isNotBlank(openid)) {
 			UserVO userVO = WechatUtils.getUserInfo(openid);
 			if (userVO.subscribe == 1) {
 				Person.add(userVO.nickname, userVO.headimgurl, userVO.sex + 100, openid);
+			}
+			PostVO rPostVO = PostVO.fromXML(body);
+			if (rPostVO.MsgType.equals(MsgType.event.toString())
+					&& rPostVO.Event.equals(EventType.subscribe.toString())) {
+				PostVO sPostVO = new PostVO(rPostVO.FromUserName, rPostVO.ToUserName, System.currentTimeMillis(),
+						MsgType.text.toString(), null, "hello", null, null);
+				response.print(sPostVO.toXML());
 			}
 		}
 	}

@@ -78,7 +78,7 @@ public class Item extends BaseModel {
 	}
 
 	public static List<Item> fetchByType(Type type) {
-		return Item.find("select i from Item i where i.isDeleted=false and i.type=?", type).fetch();
+		return Item.find("select i from Item i where i.isDeleted=false and i.type=? order by id desc", type).fetch();
 	}
 
 	public static List<Item> fetchAll() {
