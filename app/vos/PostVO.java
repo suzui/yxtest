@@ -94,7 +94,7 @@ public class PostVO {
 		} catch (Exception e) {
 			Logger.error("[toxmlerror:]%s", e.getMessage());
 		}
-		Logger.info("toxmlsuccess:%s", sb);
+		Logger.info("[toxmlsuccess:]%s", sb);
 		return sb.toString();
 	}
 }
