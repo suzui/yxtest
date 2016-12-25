@@ -77,7 +77,7 @@ public class PostVO {
 		DocumentBuilder documentBuilder = XML.newDocumentBuilder();
 		Document document = documentBuilder.newDocument();
 		Element element = document.createElement("xml");
-		StringBuffer sb = new StringBuffer("<?xml version=\"1.0\" encoding=\"UTF-8\"?><xml>");
+		StringBuffer sb = new StringBuffer("<?xml version=\"1.0\" encoding=\"UTF-8\"?> <xml>");
 		try {
 			for (Field field : PostVO.class.getDeclaredFields()) {
 				String type = field.getType().toString();
