@@ -46,4 +46,8 @@ public class WechatController extends Controller {
 		WechatUtils.token();
 	}
 
+	public static void authorize() {
+
+	}
+
 }

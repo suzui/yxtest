@@ -1,5 +1,7 @@
 package utils;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +20,7 @@ import vos.MenuVO.MenuInnerVO;
 import vos.UserVO;
 
 public class WechatUtils {
+	public static final String BASEURL = "http://yx.iclass.cn";
 	public static final String TOKEN = "yechenfan";
 	public static final String APPID = "wx06fa62c56153ace7";
 	public static final String SECRET = "bdd89414abe28b41b5b1250054ac58a6";
@@ -64,19 +67,28 @@ public class WechatUtils {
 	public static void createMenu() {
 		List<ButtonVO> buttonVOs = new ArrayList<ButtonVO>();
 		List<ButtonVO> buttonVOs1 = new ArrayList<ButtonVO>();
-		buttonVOs1.add(new ButtonVO("view", "义诊", null, "http://yixin.yechenfan.cn/wechat/yizheng", null));
-		buttonVOs1.add(new ButtonVO("view", "义卖", null, "http://yixin.yechenfan.cn/wechat/yimai", null));
-		buttonVOs1.add(new ButtonVO("view", "义演", null, "http://yixin.yechenfan.cn/wechat/yiyan", null));
+		buttonVOs1.add(new ButtonVO("view", "义诊", null, BASEURL + "/wechat/yizheng", null));
+		buttonVOs1.add(new ButtonVO("view", "义卖", null, BASEURL + "/wechat/yimai", null));
+		buttonVOs1.add(new ButtonVO("view", "义演", null, BASEURL + "/wechat/yiyan", null));
 		buttonVOs.add(new ButtonVO("click", "义工", null, null, buttonVOs1));
 		List<ButtonVO> buttonVOs2 = new ArrayList<ButtonVO>();
-		buttonVOs2.add(new ButtonVO("view", "助学", null, "http://yixin.yechenfan.cn/wechat/zhuxue", null));
-		buttonVOs2.add(new ButtonVO("view", "助残", null, "http://yixin.yechenfan.cn/wechat/zhucan", null));
-		buttonVOs2.add(new ButtonVO("view", "敬老", null, "http://yixin.yechenfan.cn/wechat/jinglao", null));
+		buttonVOs2.add(new ButtonVO("view", "助学", null, BASEURL + "/wechat/zhuxue", null));
+		buttonVOs2.add(new ButtonVO("view", "助残", null, BASEURL + "/wechat/zhucan", null));
+		buttonVOs2.add(new ButtonVO("view", "敬老", null, BASEURL + "/wechat/jinglao", null));
 		buttonVOs.add(new ButtonVO("click", "帮助", null, null, buttonVOs2));
 		List<ButtonVO> buttonVOs3 = new ArrayList<ButtonVO>();
-		buttonVOs3.add(new ButtonVO("view", "培训", null, "http://yixin.yechenfan.cn/wechat/peixun", null));
-		buttonVOs3.add(new ButtonVO("view", "环保", null, "http://yixin.yechenfan.cn/wechat/huanbao", null));
-		buttonVOs3.add(new ButtonVO("view", "加入我们", null, "http://192.168.1.100:9000/back/index", null));
+		buttonVOs3.add(new ButtonVO("view", "培训", null, BASEURL + "/wechat/peixun", null));
+		buttonVOs3.add(new ButtonVO("view", "环保", null, BASEURL + "/wechat/huanbao", null));
+		buttonVOs3.add(new ButtonVO("view", "加入我们", null, BASEURL + "/back/index", null));
+		String url = "";
+		try {
+			url = "https://open.weixin.qq.com/connect/oauth2/authorize "
+					+ URLEncoder.encode("?appid=" + APPID + "&redirect_uri=" + BASEURL + "/wechat/authorize"
+							+ "&response_type=code&scope=snsapi_base&state=100#wechat_redirect", "utf8");
+		} catch (UnsupportedEncodingException e) {
+			Logger.info("urlencodeerror", e.getMessage());
+		}
+		buttonVOs3.add(new ButtonVO("view", "授权", null, url, null));
 		buttonVOs.add(new ButtonVO("click", "公益", null, null, buttonVOs3));
 		MenuInnerVO menuInfoVO = new MenuInnerVO(buttonVOs);
 		String menuinfo = new Gson().toJson(menuInfoVO);
