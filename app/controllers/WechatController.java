@@ -1,10 +1,13 @@
 package controllers;
 
+import java.util.List;
 import java.util.Map.Entry;
 
 import org.apache.commons.lang.StringUtils;
 
 import models.person.Person;
+import models.post.Item;
+import models.post.Item.Type;
 import play.Logger;
 import play.mvc.Before;
 import play.mvc.Controller;
@@ -50,6 +53,12 @@ public class WechatController extends Controller {
 
 	public static void authorize() {
 
+	}
+
+	public static void items(int typeValue) {
+		Type type = Type.convert(typeValue);
+		List<Item> items = Item.fetchByType(type);
+		render(items, type);
 	}
 
 }

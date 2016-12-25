@@ -80,18 +80,18 @@ public class WechatUtils {
 	public static void createMenu() {
 		List<ButtonVO> buttonVOs = new ArrayList<ButtonVO>();
 		List<ButtonVO> buttonVOs1 = new ArrayList<ButtonVO>();
-		buttonVOs1.add(new ButtonVO("view", "义诊", null, BASEURL + "/wechat/yizheng", null));
-		buttonVOs1.add(new ButtonVO("view", "义卖", null, BASEURL + "/wechat/yimai", null));
-		buttonVOs1.add(new ButtonVO("view", "义演", null, BASEURL + "/wechat/yiyan", null));
-		buttonVOs.add(new ButtonVO("click", "义工", null, null, buttonVOs1));
 		List<ButtonVO> buttonVOs2 = new ArrayList<ButtonVO>();
-		buttonVOs2.add(new ButtonVO("view", "助学", null, BASEURL + "/wechat/zhuxue", null));
-		buttonVOs2.add(new ButtonVO("view", "助残", null, BASEURL + "/wechat/zhucan", null));
-		buttonVOs2.add(new ButtonVO("view", "敬老", null, BASEURL + "/wechat/jinglao", null));
-		buttonVOs.add(new ButtonVO("click", "帮助", null, null, buttonVOs2));
 		List<ButtonVO> buttonVOs3 = new ArrayList<ButtonVO>();
-		buttonVOs3.add(new ButtonVO("view", "培训", null, BASEURL + "/wechat/peixun", null));
-		buttonVOs3.add(new ButtonVO("view", "环保", null, BASEURL + "/wechat/huanbao", null));
+		buttonVOs1.add(new ButtonVO("view", "义诊", null, BASEURL + "/wechat/items/101", null));
+		buttonVOs1.add(new ButtonVO("view", "义卖", null, BASEURL + "/wechat/items/102", null));
+		buttonVOs1.add(new ButtonVO("view", "义演", null, BASEURL + "/wechat/items/103", null));
+		buttonVOs.add(new ButtonVO("click", "义工", null, null, buttonVOs1));
+		buttonVOs2.add(new ButtonVO("view", "助学", null, BASEURL + "/wechat/items/201", null));
+		buttonVOs2.add(new ButtonVO("view", "助残", null, BASEURL + "/wechat/items/202", null));
+		buttonVOs2.add(new ButtonVO("view", "敬老", null, BASEURL + "/wechat/items/203", null));
+		buttonVOs.add(new ButtonVO("click", "帮助", null, null, buttonVOs2));
+		buttonVOs3.add(new ButtonVO("view", "培训", null, BASEURL + "/wechat/items/301", null));
+		buttonVOs3.add(new ButtonVO("view", "环保", null, BASEURL + "/wechat/items/302", null));
 		buttonVOs3.add(new ButtonVO("view", "加入我们", null, BASEURL + "/back/index", null));
 		buttonVOs.add(new ButtonVO("click", "公益", null, null, buttonVOs3));
 		MenuInnerVO menuInfoVO = new MenuInnerVO(buttonVOs);

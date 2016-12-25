@@ -15,8 +15,9 @@ GET     /public/                                staticDir:public
 *     	/crud           						module:crud
 * 		/bespin 								module:bespin-1.0.1
 
-*		/person/{action}						PersonController.{action}
+*		/back/items/{typeValue}					BackController.{action}
 *		/back/{action}							BackController.{action}
+*		/wechat/items/{typeValue}				WechatController.{action}
 *		/wechat/{action}						WechatController.{action}
 
 # Catch all
