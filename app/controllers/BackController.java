@@ -46,8 +46,7 @@ public class BackController extends BaseController {
 		render(personList);
 	}
 
-	public static void addPerson(String username, String name, String password, int sex, String cellphone) {
-		Person.add(username, password, name, sex, cellphone);
+	public static void editPerson(String username, String name, String password, int sex, String cellphone) {
 		renderJSON(true);
 	}
 

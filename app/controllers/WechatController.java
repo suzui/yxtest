@@ -1,19 +1,17 @@
 package controllers;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Map.Entry;
 
 import org.apache.commons.lang.StringUtils;
 
+import models.person.Person;
 import play.Logger;
 import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.Http.Header;
 import play.mvc.Http.Request;
-import utils.CodeUtils;
 import utils.WechatUtils;
+import vos.UserVO;
 
 public class WechatController extends Controller {
 	@Before
@@ -33,12 +31,14 @@ public class WechatController extends Controller {
 		Logger.info("[wechatparams end] time:%d", System.currentTimeMillis());
 	}
 
-	public static void checkSignature(String signature, String timestamp, String nonce, String echostr) {
-		List<String> params = Arrays.asList(WechatUtils.TOKEN, timestamp, nonce);
-		Collections.sort(params);
-		String encrypt = CodeUtils.sha(StringUtils.join(params, "")).toLowerCase();
-		if (StringUtils.equals(encrypt, signature)) {
+	public static void checkSignature(String signature, String timestamp, String nonce, String echostr, String openid) {
+		if (WechatUtils.check(signature, timestamp, nonce, echostr)) {
 			response.print(echostr);
+			renderJSON(true);
+		}
+		if (StringUtils.isNotBlank(openid)) {
+			UserVO userVO = WechatUtils.getUserInfo(openid);
+			Person.add(userVO.nickname, "111111", userVO.nickname, userVO.sex + 100, null, openid);
 		}
 	}
 

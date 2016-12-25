@@ -3,10 +3,14 @@ package utils;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import org.apache.commons.lang.StringUtils;
 
 import com.google.gson.Gson;
 
@@ -47,6 +51,17 @@ public class WechatUtils {
 		HttpResponse response = WS.url(url + "?access_token=" + ACCESSTOKEN).body(data).post();
 		Logger.info("[wechat response]:%s", response.getString());
 		return response.getString();
+	}
+
+	public static boolean check(String signature, String timestamp, String nonce, String echostr) {
+		if (StringUtils.isBlank(signature) || StringUtils.isBlank(timestamp) || StringUtils.isBlank(nonce)
+				|| StringUtils.isBlank(echostr)) {
+			return false;
+		}
+		List<String> params = Arrays.asList(TOKEN, timestamp, nonce);
+		Collections.sort(params);
+		String encrypt = CodeUtils.sha(StringUtils.join(params, "")).toLowerCase();
+		return StringUtils.equals(encrypt, signature);
 	}
 
 	public static void token() {

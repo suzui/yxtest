@@ -26,6 +26,8 @@ public class Person extends BaseModel {
 	@Column(length = 100)
 	public String name;
 
+	public String avatar;
+
 	@Enumerated(EnumType.STRING)
 	public Sex sex;
 
@@ -37,6 +39,8 @@ public class Person extends BaseModel {
 	public String address;
 
 	public String email;
+
+	public String openid;
 
 	public enum Role {
 		管理员(100), 普通用户(101);
@@ -80,13 +84,17 @@ public class Person extends BaseModel {
 		}
 	}
 
-	public static Person add(String username, String password, String name, int sex, String cellphone) {
-		Person person = new Person();
+	public static Person add(String username, String password, String name, int sex, String cellphone, String openid) {
+		Person person = findByOpenid(openid);
+		if (person == null) {
+			person = new Person();
+		}
 		person.username = username;
 		person.name = name;
 		person.password = CodeUtils.md5(password);
 		person.sex = Sex.convert(sex);
 		person.role = Role.普通用户;
+		person.openid = openid;
 		return person.save();
 	}
 
@@ -130,6 +138,10 @@ public class Person extends BaseModel {
 
 	public static Person findByUsername(String username) {
 		return Person.find("select p from Person p where p.isDeleted=false and p.username=?", username).first();
+	}
+
+	public static Person findByOpenid(String openid) {
+		return Person.find("select p from Person p where p.isDeleted=false and p.openid=?", openid).first();
 	}
 
 	public static Person findByName(String name) {
