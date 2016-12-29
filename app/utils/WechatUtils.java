@@ -12,6 +12,8 @@ import org.apache.commons.lang.StringUtils;
 
 import com.google.gson.Gson;
 
+import models.post.Item;
+import models.post.Item.Type;
 import play.Logger;
 import play.libs.WS;
 import play.libs.WS.HttpResponse;
@@ -82,18 +84,18 @@ public class WechatUtils {
 		List<ButtonVO> buttonVOs1 = new ArrayList<ButtonVO>();
 		List<ButtonVO> buttonVOs2 = new ArrayList<ButtonVO>();
 		List<ButtonVO> buttonVOs3 = new ArrayList<ButtonVO>();
-		buttonVOs1.add(new ButtonVO("view", "义诊", null, BASEURL + "/wechat/items/101", null));
-		buttonVOs1.add(new ButtonVO("view", "义卖", null, BASEURL + "/wechat/items/102", null));
-		buttonVOs1.add(new ButtonVO("view", "义演", null, BASEURL + "/wechat/items/103", null));
-		buttonVOs.add(new ButtonVO("click", "义工", null, null, buttonVOs1));
-		buttonVOs2.add(new ButtonVO("view", "助学", null, BASEURL + "/wechat/items/201", null));
-		buttonVOs2.add(new ButtonVO("view", "助残", null, BASEURL + "/wechat/items/202", null));
-		buttonVOs2.add(new ButtonVO("view", "敬老", null, BASEURL + "/wechat/items/203", null));
-		buttonVOs.add(new ButtonVO("click", "帮助", null, null, buttonVOs2));
-		buttonVOs3.add(new ButtonVO("view", "培训", null, BASEURL + "/wechat/items/301", null));
-		buttonVOs3.add(new ButtonVO("view", "环保", null, BASEURL + "/wechat/items/302", null));
-		buttonVOs3.add(new ButtonVO("view", "加入我们", null, BASEURL + "/back/index", null));
-		buttonVOs.add(new ButtonVO("click", "公益", null, null, buttonVOs3));
+		for (Type type : Type.getByValue(100)) {
+			buttonVOs1.add(new ButtonVO("view", type.toString(), null, BASEURL + "/wechat/items/" + type.value, null));
+		}
+		buttonVOs.add(new ButtonVO("click", Item.navs[0], null, null, buttonVOs1));
+		for (Type type : Type.getByValue(200)) {
+			buttonVOs2.add(new ButtonVO("view", type.toString(), null, BASEURL + "/wechat/items/" + type.value, null));
+		}
+		buttonVOs.add(new ButtonVO("click", Item.navs[1], null, null, buttonVOs1));
+		for (Type type : Type.getByValue(300)) {
+			buttonVOs3.add(new ButtonVO("view", type.toString(), null, BASEURL + "/wechat/items/" + type.value, null));
+		}
+		buttonVOs.add(new ButtonVO("click", Item.navs[2], null, null, buttonVOs1));
 		MenuInnerVO menuInfoVO = new MenuInnerVO(buttonVOs);
 		String menuinfo = new Gson().toJson(menuInfoVO);
 		post("https://api.weixin.qq.com/cgi-bin/menu/create", menuinfo);
