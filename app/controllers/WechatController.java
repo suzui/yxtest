@@ -91,6 +91,9 @@ public class WechatController extends Controller {
 	public static void item(long id) {
 		Item item = Item.findOneById(id);
 		item.viewed();
+		if (StringUtils.isNotBlank(item.link)) {
+			redirect(item.link);
+		}
 		render(item);
 	}
 
