@@ -12,7 +12,7 @@
     	<style type="text/css">
 		html{width:100%; overflow-x:hidden;font-size:62.5%;}
 		body{font-size:1.6rem;line-height:1.6;font-family: '微软雅黑',Droid,Sans,Fallback,'Helvetica Neue',Helvetica,Arial,Sans-serif;}
-		img{max-width:300px;} 
+		img{max-width:400px;} 
 		.main{padding:1%;}
 		.content{font-size:1.8rem;} 
 		.mt10{margin-top:10px;}.mb10{margin-bottom:10px;}.ml10{margin-left:10px;}
@@ -21,16 +21,18 @@
 	</head>
 	<body class="bgf5">
 		<br/>
-		<div class="article_header">
-			<h3>${item.title}</h3>
-			<p>
-				<span>${item.createTime()} - ${item.author}</span>
-			</p>
-		</div>
-		<div class="article_content">
-			#{verbatim}
-				${item.content}
-			#{/verbatim}
+		<div class="main">
+			<div class="article_header">
+				<h3>${item.title}</h3>
+				<p>
+					<span>${item.createTime()} - ${item.author}</span>
+				</p>
+			</div>
+			<div class="article_content content">
+				#{verbatim}
+					${item.content}
+				#{/verbatim}
+			</div>
 		</div>
 		*{<div class="comment_bar">
 			<textarea name="" id="" placeholder="写评论"></textarea>
