@@ -91,11 +91,11 @@ public class WechatUtils {
 		for (Type type : Type.getByValue(200)) {
 			buttonVOs2.add(new ButtonVO("view", type.toString(), null, BASEURL + "/wechat/items/" + type.value, null));
 		}
-		buttonVOs.add(new ButtonVO("click", Item.navs[1], null, null, buttonVOs1));
+		buttonVOs.add(new ButtonVO("click", Item.navs[1], null, null, buttonVOs2));
 		for (Type type : Type.getByValue(300)) {
 			buttonVOs3.add(new ButtonVO("view", type.toString(), null, BASEURL + "/wechat/items/" + type.value, null));
 		}
-		buttonVOs.add(new ButtonVO("click", Item.navs[2], null, null, buttonVOs1));
+		buttonVOs.add(new ButtonVO("click", Item.navs[2], null, null, buttonVOs3));
 		MenuInnerVO menuInfoVO = new MenuInnerVO(buttonVOs);
 		String menuinfo = new Gson().toJson(menuInfoVO);
 		post("https://api.weixin.qq.com/cgi-bin/menu/create", menuinfo);
