@@ -28,10 +28,11 @@ public class Item extends BaseModel {
 
 	public Integer view;
 
-	public static final String[] navs = { "公益活动", "公益培训", "公益汇演" };
+	public static final String[] navs = { "特别关注", "公益活动", "公益培训" };
 
 	public enum Type {
-		怀老(101), 助学(102), 环保(103), 助残(104), 义卖(105), 义工培训(201), 环保培训(202), 教育培训(203), 茶道培训(204), 急救培训(205), 义演(301);
+		慈善简介(101), 义工风采(102), 关爱义工(103), 心灵环保(104), 怀老义诊(201), 助学助残(202), 扶贫救灾(203), 义卖义演(204), 环保(205), 义工培训(
+				301), 才艺培训(301), 传统文化培训(301);
 
 		public int value;
 
