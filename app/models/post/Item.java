@@ -73,6 +73,16 @@ public class Item extends BaseModel {
 		return item.save();
 	}
 
+	public void edit(String title, String author, String cover, String summary, String link, String content) {
+		this.title = title;
+		this.author = author;
+		this.cover = cover;
+		this.summary = summary;
+		this.link = link;
+		this.content = content;
+		this.save();
+	}
+
 	public void del() {
 		this.logicDelete();
 	}

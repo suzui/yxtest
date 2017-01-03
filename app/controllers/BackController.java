@@ -88,6 +88,18 @@ public class BackController extends BaseController {
 		renderJSON(new Result(true));
 	}
 
+	public static void itemEdit(long id) {
+		Item item = Item.findOneById(id);
+		render(item);
+	}
+
+	public static void editItem(Long id, String title, String author, String cover, String summary, String link,
+			String content) {
+		Item item = Item.findOneById(id);
+		item.edit(title, author, cover, summary, link, content);
+		renderJSON(new Result(true));
+	}
+
 	public static void delItem(Long id) {
 		Item item = Item.findOneById(id);
 		item.del();
