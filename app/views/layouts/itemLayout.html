@@ -103,7 +103,7 @@
 	    $("#addItem").click(function(){
 	    	  $.post("/back/addItem",
 	    	  {
-	    	  	type:${type.value},
+	    	  	type:${type==null?"":type.value},
 	    	  	title:$("#title").val(),
 	    	  	author:$("#author").val(),
 	    	  	cover:$("#inputImage").attr("src"),
@@ -126,7 +126,7 @@
 	    $("#editItem").click(function(){
 	    	  $.post("/back/editItem",
 	    	  {
-	    	  	id:${item.id},
+	    	  	id:${item==null?0:item.id},
 	    	  	title:$("#title").val(),
 	    	  	author:$("#author").val(),
 	    	  	cover:$("#inputImage").attr("src"),
