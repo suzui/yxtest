@@ -103,7 +103,7 @@
 	    $("#addItem").click(function(){
 	    	  $.post("/back/addItem",
 	    	  {
-	    	  	type:${type==null?"":type.value},
+	    	  	type:${type==null?101:type.value},
 	    	  	title:$("#title").val(),
 	    	  	author:$("#author").val(),
 	    	  	cover:$("#inputImage").attr("src"),
