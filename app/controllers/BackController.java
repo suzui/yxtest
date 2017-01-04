@@ -83,8 +83,8 @@ public class BackController extends BaseController {
 	}
 
 	public static void addItem(int type, String title, String author, String cover, String summary, String link,
-			String content) {
-		Item.add(Type.convert(type), title, author, cover, summary, link, content);
+			String content, int indexOrder) {
+		Item.add(Type.convert(type), title, author, cover, summary, link, content, indexOrder);
 		renderJSON(new Result(true));
 	}
 
@@ -94,9 +94,9 @@ public class BackController extends BaseController {
 	}
 
 	public static void editItem(Long id, String title, String author, String cover, String summary, String link,
-			String content) {
+			String content, int indexOrder) {
 		Item item = Item.findOneById(id);
-		item.edit(title, author, cover, summary, link, content);
+		item.edit(title, author, cover, summary, link, content, indexOrder);
 		renderJSON(new Result(true));
 	}
 

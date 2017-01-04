@@ -22,6 +22,7 @@ public class Item extends BaseModel {
 	public String link;
 	@Lob
 	public String content;
+	public Integer indexOrder;
 
 	@Enumerated(EnumType.STRING)
 	public Type type;
@@ -61,7 +62,7 @@ public class Item extends BaseModel {
 	}
 
 	public static Item add(Type type, String title, String author, String cover, String summary, String link,
-			String content) {
+			String content, int indexOrder) {
 		Item item = new Item();
 		item.type = type;
 		item.title = title;
@@ -70,16 +71,19 @@ public class Item extends BaseModel {
 		item.summary = summary;
 		item.link = link;
 		item.content = content;
+		item.indexOrder = indexOrder;
 		return item.save();
 	}
 
-	public void edit(String title, String author, String cover, String summary, String link, String content) {
+	public void edit(String title, String author, String cover, String summary, String link, String content,
+			int indexOrder) {
 		this.title = title;
 		this.author = author;
 		this.cover = cover;
 		this.summary = summary;
 		this.link = link;
 		this.content = content;
+		this.indexOrder = indexOrder;
 		this.save();
 	}
 
@@ -92,7 +96,8 @@ public class Item extends BaseModel {
 	}
 
 	public static List<Item> fetchByType(Type type) {
-		return Item.find("select i from Item i where i.isDeleted=false and i.type=? order by id desc", type).fetch();
+		return Item.find("select i from Item i where i.isDeleted=false and i.type=? order by indexOrder desc", type)
+				.fetch();
 	}
 
 	public static List<Item> fetchAll() {
